@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 import ScanHistory from "./pages/ScanHistory";
 import AdminDashboard from "./pages/AdminDashboard";
 import SnippetLibrary from "./pages/SnippetLibrary";
@@ -30,6 +31,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/history" element={<ProtectedRoute><ScanHistory /></ProtectedRoute>} />
           <Route path="/snippets" element={<ProtectedRoute><SnippetLibrary /></ProtectedRoute>} />
           <Route path="/reports" element={<ProtectedRoute><Reports /></ProtectedRoute>} />          <Route path="/explain"  element={<ProtectedRoute><CodeExplain /></ProtectedRoute>} />

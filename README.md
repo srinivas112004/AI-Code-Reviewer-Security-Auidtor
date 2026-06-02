@@ -1,70 +1,77 @@
 # AI Code Reviewer & Security Auditor Agent
 
 <div align="center">
-  <h3>From Code to Secure, Instantly.</h3>
-  <p>AI-powered code security auditing and vulnerability detection tool</p>
+  <img src="frontend/public/AI Code Reviewer & Secuity Auditor.jpeg" width="120" alt="Logo" style="border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);" />
+  <h2 style="margin-top: 15px; font-weight: 700;">From Code to Secure, Instantly.</h2>
+  <p>An enterprise-grade, AI-powered code security auditing, vulnerability detection, and automatic fixing suite powered by Google's Gemini AI.</p>
 </div>
 
-## 🚀 Features
+---
 
-- **AI-Powered Security Analysis**: Uses Google's Gemini AI to detect security vulnerabilities in your code
-- **Multiple Input Methods**:
-  - Upload ZIP files containing your codebase
-  - Scan public GitHub repositories via URL
-- **Comprehensive Reporting**: Detailed vulnerability reports with severity levels and actionable suggestions
-- **Interactive Dashboard**: Visual representation of security scores and vulnerability breakdowns
-- **PDF Report Generation**: Download detailed security audit reports
-- **Multi-Language Support**: Supports Python, JavaScript, Java, C++, C, HTML, CSS, PHP, Ruby, Go, and more
+## 🚀 Key Features
+
+* **AI-Powered Vulnerability Detection**: Deep-scan your codebases for SQL injection, XSS, CSRF, remote code execution, and other OWASP Top 10 vulnerabilities using advanced semantic AI.
+* **Triple-Redundant Context Fixes**: Generate real, precise line-by-line code fixes directly in the UI. Instantly view an interactive visual diff comparing original and patched code.
+* **Multi-Fix Alternative Solutions**: Request multiple alternative fixing strategies with lists of pros and cons, allowing developers to choose the ideal architectural fit.
+* **Interactive Code Chat & Explainer**: Work directly with the security auditor. Explain complex functions and ask architectural security questions inside an integrated, high-fidelity Monaco Editor environment.
+* **Premium PDF Report Generator**: Generate and download stunning executive security reports featuring left-accent branding bars, KPI breakdowns, custom-styled auto-tables, and clean typography.
+* **Multiple Input Methods**:
+  * Drag-and-drop file/ZIP directory scanner.
+  * Scan public GitHub repositories directly via URL.
+  * Direct copy-paste code auditor.
+* **JWT User Authentication & SQLite Store**: Complete multi-user accounts system with role access control (User vs. Admin), robust rate-limiting, secure DB backups, and persistent scan histories.
+
+---
 
 ## 🛠️ Tech Stack
 
 ### Backend
-- **Python 3.8+**
-- **Flask** - Web framework
-- **Google Generative AI (Gemini)** - AI-powered code analysis
-- **Flask-CORS** - Cross-origin resource sharing
-- **GitPython** - Git repository handling
-- **python-dotenv** - Environment variable management
+* **Python 3.8+**
+* **Flask** - Clean API endpoints and server-sent event (SSE) streaming
+* **Google Generative AI (Gemini)** - Model orchestration for code review, fixes, and chat
+* **SQLite & SQLAlchemy** - Persistent relational storage for user accounts, scans, and issue snippets
+* **GitPython** - Secure checkout and scanning of public GitHub repositories
 
 ### Frontend
-- **React 18** - User interface framework
-- **Material-UI (MUI)** - Component library
-- **Chart.js** - Data visualization
-- **Axios** - HTTP client
-- **jsPDF** - PDF generation
-- **React Particles** - Background animations
+* **React 19 & Vite 7** - Ultra-fast development server and production bundling
+* **Tailwind CSS v4** - Custom utility class designs with fluid hover transitions
+* **ChartJS & React-Chartjs-2** - Dynamic vulnerability and trend visualizations
+* **Monaco Editor (@monaco-editor/react)** - Visual code highlights for explains and security chat
+* **jsPDF & jsPDF-AutoTable** - Professional corporate report generation
+
+---
 
 ## 📋 Prerequisites
 
-- Python 3.8 or higher
-- Node.js 16 or higher
-- npm or yarn package manager
-- Google AI API key (Gemini)
+* **Python 3.8** or higher
+* **Node.js 18** or higher
+* **npm** or **yarn** package manager
+* **Google AI API Key (Gemini)** - Obtain one from [Google AI Studio](https://aistudio.google.com/)
 
-## 🔧 Installation
+---
+
+## 🔧 Installation & Setup
 
 ### 1. Clone the Repository
 ```bash
-git clone <repository-url>
-cd AI-Code-Auditor
+git clone https://github.com/srinivas112004/AI-Code-Reviewer-Security-Auidtor-.git
+cd "AI Code Reviewer and Security Auditor"
 ```
 
 ### 2. Backend Setup
 
-#### Create Virtual Environment
+#### Create and Activate Virtual Environment
 ```bash
 cd backend
-python -m venv venv
+python -m venv .venv
 ```
-
-#### Activate Virtual Environment
-- **Windows**:
-  ```bash
-  venv\Scripts\activate
+* **Windows (PowerShell)**:
+  ```powershell
+  .venv\Scripts\Activate.ps1
   ```
-- **macOS/Linux**:
+* **macOS/Linux**:
   ```bash
-  source venv/bin/activate
+  source .venv/bin/activate
   ```
 
 #### Install Python Dependencies
@@ -73,12 +80,13 @@ pip install -r requirements.txt
 ```
 
 #### Environment Configuration
-Create a `.env` file in the backend directory:
+Create a `.env` file in the `backend/` directory:
 ```env
-GOOGLE_API_KEY=your_google_api_key_here
+GOOGLE_API_KEY=your_gemini_api_key_here
+JWT_SECRET_KEY=your_jwt_signing_key_here
 ```
 
-Get your Google AI API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+---
 
 ### 3. Frontend Setup
 
@@ -88,172 +96,61 @@ cd ../frontend
 npm install
 ```
 
+---
+
 ## 🚀 Running the Application
 
-### Start Backend Server
+### Start the Backend API Server
 ```bash
 cd backend
 python main.py
 ```
-The backend server will start on `http://localhost:5000`
+The backend API server will spin up on **`http://localhost:5000`**.
 
-### Start Frontend Development Server
+### Start the Frontend Dev Server
 ```bash
 cd frontend
-npm start
+npm run dev
 ```
-The frontend will be available at `http://localhost:3000`
+The Vite development server will boot and be accessible locally at **`http://localhost:5173`**.
 
-## 📖 Usage
+---
 
-### Scanning Code
+## 📖 Main Workflow Guide
 
-1. **Upload ZIP File**:
-   - Click on "Upload ZIP" tab
-   - Drag and drop your ZIP file or click to select
-   - Click "Scan Now" to start analysis
+### 1. Initiating a Scan
+* **ZIP Upload**: Drop any ZIP archive of your source code. The backend automatically handles nested files.
+* **GitHub Repository**: Input the URL of any public GitHub project to run an immediate remote audit.
+* **Direct Paste**: Switch to the Monaco Editor tab, select your programming language, and paste specific files to audit.
 
-2. **GitHub Repository**:
-   - Click on "GitHub URL" tab
-   - Enter the public GitHub repository URL
-   - Click "Scan Now" to start analysis
+### 2. Generating Context-Rich Fixes
+* Select any security vulnerability from the actionable issues feed.
+* Click **Generate AI Fix** to see a clean line-by-line visual diff.
+* Click **Multiple Fixes** to see alternative approaches, complete with pros, cons, and confidence scores.
+* Click **Download Patched File** to download the fixed code file.
 
-### Understanding Results
+### 3. Reviewing Reports
+* Switch to the **Reports** tab or click **Download PDF** on any scan.
+* Generates a corporate-grade, customized layout ready for stakeholders.
 
-- **Overall Security Score**: Visual gauge showing code security rating (0-100)
-- **Vulnerability Breakdown**: Doughnut chart categorizing issues by severity
-- **Code Quality Metrics**: Key statistics about your codebase
-- **Actionable Issues Feed**: Detailed list of security issues with:
-  - Severity level (Critical, High, Medium, Low)
-  - File location
-  - Issue description
-  - AI-powered suggestions for fixes
+---
 
-### Exporting Reports
+## 🛡️ Security & Administration
 
-- Click "Download Report" to generate a comprehensive PDF report
-- Reports include all scan results, metrics, and actionable recommendations
+* **Rate Limiting**: Configured daily scanning thresholds per user role.
+* **Automatic SQLite Migrations**: Secure column updates (`code_snippet` extensions) auto-applied on startup.
+* **Automatic Database Backups**: Run `python backup_db.py` to securely store snapshots of user and scan records.
+* **Log Rotation**: Persistent audit logging enabled inside the `backend/logs` directory.
 
-## 🔍 Supported File Types
-
-| Language | Extensions |
-|----------|------------|
-| Python | `.py` |
-| JavaScript | `.js` |
-| Java | `.java` |
-| C++ | `.cpp`, `.c++` |
-| C | `.c` |
-| HTML | `.html` |
-| CSS | `.css` |
-| PHP | `.php` |
-| Ruby | `.rb` |
-| Go | `.go` |
-| TypeScript | `.ts` |
-
-## 📊 File Size Limits
-
-- **Single File**: Up to 250 MB
-- **ZIP File**: Up to 250 MB
-- **GitHub Repository**: No size limit (subject to GitHub API limits)
-
-## 🛡️ Security Features
-
-- **Per-file Analysis**: Each code file is analyzed individually for precise vulnerability detection
-- **Rate Limiting**: Built-in delays to respect API limits
-- **Temporary File Cleanup**: Automatic cleanup of uploaded files after processing
-- **CORS Protection**: Secure cross-origin resource sharing configuration
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-1. **Backend not starting**:
-   - Ensure virtual environment is activated
-   - Check if port 5000 is available
-   - Verify GOOGLE_API_KEY is set correctly
-
-2. **Frontend build errors**:
-   - Clear node_modules: `rm -rf node_modules && npm install`
-   - Check Node.js version compatibility
-
-3. **API connection issues**:
-   - Verify backend is running on port 5000
-   - Check CORS configuration
-   - Ensure frontend is configured to connect to correct backend URL
-
-4. **File upload issues**:
-   - Ensure ZIP file is not corrupted
-   - Check file size limits
-   - Verify file contains supported code files
-
-### Getting Help
-
-If you encounter issues:
-1. Check the browser console for frontend errors
-2. Check the terminal for backend error messages
-3. Ensure all environment variables are properly configured
-4. Verify all dependencies are installed correctly
+---
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Make your changes and test thoroughly
-4. Commit your changes: `git commit -m 'Add feature'`
-5. Push to the branch: `git push origin feature-name`
-6. Submit a pull request
-
-## 📝 API Documentation
-
-### Endpoints
-
-#### POST /api/scan
-Scan code for security vulnerabilities.
-
-**Request (ZIP file)**:
-```bash
-curl -X POST http://localhost:5000/api/scan \
-  -F "file=@your-code.zip"
-```
-
-**Request (GitHub URL)**:
-```bash
-curl -X POST http://localhost:5000/api/scan \
-  -H "Content-Type: application/json" \
-  -d '{"github_url": "https://github.com/user/repo"}'
-```
-
-**Response**:
-```json
-{
-  "scan_info": "Successfully scanned 15 files.",
-  "overall_score": 85,
-  "metrics": {
-    "code_complexity": "N/A (Per-file scan)",
-    "duplication_percentage": "N/A (Per-file scan)",
-    "vulnerable_dependencies": "N/A (Per-file scan)"
-  },
-  "issues": [
-    {
-      "severity": "High",
-      "description": "SQL injection vulnerability detected",
-      "suggestion": "Use parameterized queries instead of string concatenation",
-      "file": "src/database.py"
-    }
-  ]
-}
-```
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🙏 Acknowledgments
-
-- Google Generative AI (Gemini) for powering the security analysis
-- Material-UI for the beautiful component library
-- Chart.js for data visualization
-- React community for the amazing ecosystem
+1. Fork the repository.
+2. Create a feature branch: `git checkout -b feature/amazing-ui`
+3. Commit your changes: `git commit -m 'Add amazing UI design'`
+4. Push to the branch: `git push origin feature/amazing-ui`
+5. Open a Pull Request.
 
 ---
 
